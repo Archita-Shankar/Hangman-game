@@ -11,8 +11,10 @@ This is a simple Hangman game implemented in Python. The game randomly selects a
 - The player has a limited number of tries (6 by default) to guess the word.
 - The game ends when the player guesses the word correctly or runs out of tries.
 
-## Files
+![Screenshot 2024-08-10 235538](https://github.com/user-attachments/assets/6cd22112-0a99-4021-82c6-ae644c08582a)
+![Screenshot 2024-08-10 235639](https://github.com/user-attachments/assets/eb6f0935-63d8-400b-9e37-3cd214924a3e)
 
+## Files
 - `app.py`: The main script to run the Hangman game.
 - `words.txt`: A text file containing a list of words for the game.
 - `stages.txt`: A text file containing the hangman stages, separated by `###`.
