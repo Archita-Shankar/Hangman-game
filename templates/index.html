@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,9 +19,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-attachment: fixed;
+            
         }
         .container {
-            max-width: 600px;
+            max-width: 100% /*600px*/;
             background: 9BCECD; /* White background with some transparency */
             padding: 20px;
             border-radius: 8px;
@@ -124,9 +126,9 @@
         });
     </script>
 </body>
-</html> -->
+</html>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -151,7 +153,7 @@
         .container {
             width: 90%;
             max-width: 600px;
-            background: transparent; /* Transparent background */
+            background: rgba(155, 206, 205, 0); /* Transparent background */
             padding: 20px;
             border-radius: 8px;
         }
@@ -179,14 +181,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
         }
         input[type="text"] {
             font-size: 1em;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            flex-grow: 1;
+            flex-grow: 2;
             flex-basis: 0;
         }
         button {
@@ -209,23 +211,19 @@
             cursor: not-allowed;
         }
         @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5em;
-            }
-            #hangman-stage {
-                font-size: 1.5em;
-            }
-            #word {
-                font-size: 1.2em;
-            }
-            #message {
-                font-size: 1em;
-            }
             .input-container {
-                flex-direction: column;
+                flex-direction: row;
+                gap: 5px; /* Reduce the gap between elements */
             }
             input[type="text"], button {
-                width: 100%;
+                flex-grow: 1;
+                flex-basis: 0;
+            }
+            input[type="text"] {
+                padding: 8px; /* Slightly reduce padding on mobile */
+            }
+            button {
+                padding: 8px; /* Slightly reduce padding on mobile */
             }
         }
     </style>
@@ -283,4 +281,5 @@
     </script>
 </body>
 </html>
+ -->
 
