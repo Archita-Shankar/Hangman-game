@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -124,4 +124,163 @@
         });
     </script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('https://img.freepik.com/premium-photo/yellow-background-with-blue-white-logo-it_916191-329430.jpg?w=2000');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: transparent; /* Transparent background */
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+        }
+        #hangman-stage {
+            white-space: pre;
+            font-family: monospace;
+            font-size: 2em;
+            margin: 20px 0;
+            color: #555;
+        }
+        #word {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #333;
+        }
+        #message {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #f00;
+        }
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        input[type="text"] {
+            font-size: 1em;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #007bff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            #hangman-stage {
+                font-size: 1.5em;
+            }
+            #word {
+                font-size: 1.2em;
+            }
+            #message {
+                font-size: 1em;
+            }
+            .input-container {
+                flex-direction: column;
+            }
+            input[type="text"], button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hangman Game</h1>
+        <div id="hangman-stage"></div>
+        <div id="word"></div>
+        <div id="message"></div>
+        <div class="input-container">
+            <input type="text" id="guess" maxlength="1" placeholder="Guess a letter">
+            <button onclick="submitGuess()">Submit Guess</button>
+            <button onclick="resetGame()">Reset Game</button>
+        </div>
+    </div>
+
+    <script>
+        function updateGameState(data) {
+            document.getElementById('hangman-stage').textContent = data.stage;
+            document.getElementById('word').textContent = data.word;
+            document.getElementById('message').textContent = data.message;
+        }
+
+        function submitGuess() {
+            const guess = document.getElementById('guess').value;
+            fetch('/submit_guess', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ letter: guess })
+            })
+            .then(response => response.json())
+            .then(data => {
+                updateGameState(data);
+                document.getElementById('guess').value = '';
+            });
+        }
+
+        function resetGame() {
+            fetch('/reset_game')
+            .then(response => response.json())
+            .then(data => {
+                updateGameState(data);
+            });
+        }
+
+        // Initial game state
+        fetch('/game_state')
+        .then(response => response.json())
+        .then(data => {
+            updateGameState(data);
+        });
+    </script>
+</body>
 </html>
+
